@@ -20,6 +20,8 @@ function FieldController(_label, _altLabel){
     this.placeholder = null;
     this.placeholderRule = null;
 
+    this.required = false;
+
     /* This function will make the labels a little more
        HTML-id-friendly. No non-english letters or spaces.
        Oh, and it will turn the label into camelCase. */
