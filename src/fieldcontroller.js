@@ -51,10 +51,10 @@ function FieldController(_label, _altLabel){
     };
 
     this.isValid = function(){
-        if (!this.modelRule)
-            return true;
+        if (this.required)
+            return this.model != null && (!this.modelRule || this.modelRule(this.model));
         else
-            return this.modelRule(this.model);
+            return !this.modelRule || this.modelRule(this.model);
     };
 
     this.showAlt = function(){

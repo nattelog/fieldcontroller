@@ -139,3 +139,31 @@ QUnit.test("Personal code number test", function(assert){
     fc.model = "19921001a313";
     assert.notOk(fc.isValid(), "19921001a313 should not be ok.");
 });
+
+QUnit.test("Required test", function(assert){
+    var fc = new FieldController();
+
+    fc.required = true;
+    assert.notOk(fc.isValid(), "Model is empty, so this should not pass.");
+
+    fc.model = "Hej på dig!";
+    assert.ok(fc.isValid(), "Model is set, so this should pass.");
+
+    fc.modelRule = function(model){
+        return model == "Hej på dig!";
+    };
+
+    assert.ok(fc.isValid(), "This should pass.");
+
+    fc.model = "Hejdå på dig!";
+    assert.notOk(fc.isValid(), "Model has changed from rule, so this should not pass.");
+
+    fc.required = false;
+
+    assert.notOk(fc.isValid(), "Required is false. But the rule should still be held.");
+
+    fc.modelRule = null;
+    fc.model = "";
+
+    assert.ok(fc.isValid(), "This should pass.");
+});
