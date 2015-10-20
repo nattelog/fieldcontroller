@@ -166,4 +166,9 @@ QUnit.test("Required test", function(assert){
     fc.model = "";
 
     assert.ok(fc.isValid(), "This should pass.");
+
+    fc.required = true;
+    assert.notOk(fc.isValid(), "This should not pass.");
+
+    fc.model = " ";
 });

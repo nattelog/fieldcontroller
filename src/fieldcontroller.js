@@ -27,7 +27,7 @@ function FieldController(_label, _altLabel){
        Oh, and it will turn the label into camelCase. */
     this.getId = function(){
         var _label = this.label.toLowerCase();
-        _label = _trim(_label);
+        _label = this.trim(_label);
         var _arr = _label.split(/\s/);
         var _first = true;
 
@@ -52,7 +52,7 @@ function FieldController(_label, _altLabel){
 
     this.isValid = function(){
         if (this.required)
-            return this.model != null && (!this.modelRule || this.modelRule(this.model));
+            return !_isEmpty(this.model) && (!this.modelRule || this.modelRule(this.model));
         else
             return !this.modelRule || this.modelRule(this.model);
     };
@@ -67,7 +67,7 @@ function FieldController(_label, _altLabel){
     /* Some helpers. */
 
     /* Removes all spaces at the beginning and the end of 'text'. */
-    var _trim = function(text){
+    this.trim = function(text){
         var _text = text;
 
         /* Removing spaces in beginning. */;
@@ -82,6 +82,10 @@ function FieldController(_label, _altLabel){
     };
 
     this.trimTest = function(text){
-        return _trim(text);
+        return this.trim(text);
+    };
+
+    var _isEmpty = function(value){
+        return (!value || value.length === 0);
     };
 };
