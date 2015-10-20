@@ -43,6 +43,10 @@ function FieldController(_label, _altLabel){
         return _arr.join("");
     };
 
+    this.getTrimmedModel = function(){
+        return this.trim(this.model);
+    };
+
     this.getPlaceholder = function(){
         if (!this.placeholderRule)
             return this.placeholder;
