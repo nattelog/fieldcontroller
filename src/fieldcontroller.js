@@ -68,6 +68,10 @@ function FieldController(_label, _altLabel){
             return this.altLabelRule();
     };
 
+    this.resetModel = function(){
+        this.model = null;
+    };
+
     /* Some helpers. */
 
     /* Removes all spaces at the beginning and the end of 'text'. */
